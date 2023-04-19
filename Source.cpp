@@ -34,7 +34,6 @@ int main()
 	cout << " please insert the second value to be stored in the vector" << endl;
 	cin >> secondValue;
 	insertAfter(firstValue, secondValue, V1);
-	//V1 = { firstValue, secondValue, 3, 2, 4, 1, 5, 5, 5 };
 	cout << " please insert the values to follow inside the vector " << endl;
 	int a=0;
 	for (int i = 2; i < n ; i++)
