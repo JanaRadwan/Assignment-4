@@ -23,25 +23,21 @@ public:
         this->head = nullptr;
     }
 
-    void add_node(int data) {
-        if (this->head == nullptr) {
-            this->head = new Node(data, 1);
+   void addNode(int value) {
+        Node* newNode = new Node;
+        newNode->data = value;
+        newNode->count = 1;
+        newNode->next = nullptr;
+
+        if (head == nullptr) {
+            head = newNode;
         }
         else {
-            Node* current = this->head;
+            Node* current = head;
             while (current->next != nullptr) {
-                if (current->data == data) {
-                    current->count += 1;
-                    return;
-                }
                 current = current->next;
             }
-            if (current->data == data) {
-                current->count += 1;
-            }
-            else {
-                current->next = new Node(data, 1);
-            }
+            current->next = newNode;
         }
     }
 
@@ -69,21 +65,39 @@ public:
         }
     }
 
-    void printList() {
-        Node* current = this->head;
+     void printList() {
+        Node* current = head;
         while (current != nullptr) {
-            for (int i = 0; i < current->count; i++) {
-                cout << current->data << " ";
-            }
+            cout << current->data << " with count (" << current->count << ") ";
             current = current->next;
         }
         cout << endl;
+    }
+    void createList(vector<int> v) {
+        for (int i = 0; i < v.size(); i++) {
+            int value = v[i];
+            bool found = false;
+
+            Node* current = head;
+            while (current != nullptr) {
+                if (current->data == value) {
+                    current->count++;
+                    found = true;
+                    break;
+                }
+                current = current->next;
+            }
+
+            if (!found) {
+                addNode(value);
+            }
+        }
     }
     int sumNodes() {
         int sum = 0;
         Node* current = this->head;
         while (current != nullptr) {
-            sum += current->data;
+            sum += current->data * current->count;
             current = current->next;
         }
         return sum;
