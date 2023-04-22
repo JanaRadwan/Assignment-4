@@ -12,13 +12,6 @@ void insertAfter(int F, int S, vector<int>& V1) {
 	V1.push_back(F);
 	V1.push_back(S);
 }
-LinkedList create_linked_list(vector<int> lst) {
-	LinkedList linked_list;
-	for (int i = 0; i < lst.size(); i++) {
-		linked_list.add_node(lst[i]);
-	}
-	return linked_list;
-}
 
 
 
@@ -34,8 +27,9 @@ int main()
 	cout << " please insert the second value to be stored in the vector" << endl;
 	cin >> secondValue;
 	insertAfter(firstValue, secondValue, V1);
+	
 	cout << " please insert the values to follow inside the vector " << endl;
-	int a=0;
+	int a;
 	for (int i = 2; i < n ; i++)
 	{
 
@@ -43,17 +37,13 @@ int main()
 		V1.push_back(a);
 		
 	}
-	for (int i = 0; i < V1.size(); i++)
-	{
-
-		cout<<V1[i];
-
-	}
 	
-
-	LinkedList linked_list= create_linked_list(V1);
 	
-	linked_list.printList();
-	cout << linked_list.sumNodes();
+	LinkedList list;
+	list.createList(V1);
+	cout << " the linked list elements are : " << endl;
+	list.printList();
+	cout << " the sum of nodes is " << endl;
+	cout<< list.sumNodes();
 	return 0;
 }
